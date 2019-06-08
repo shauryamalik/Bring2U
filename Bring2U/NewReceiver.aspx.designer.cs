@@ -10,6 +10,6 @@
 namespace Bring2U {
     
     
-    public partial class GetStarted {
+    public partial class NewReceiver {
     }
 }
