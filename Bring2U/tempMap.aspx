@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="tempMap.aspx.cs" Inherits="Bring2U.tempMap" %>
+
+<asp:label runat="server" text="Label" id="label1"></asp:label>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,7 +11,7 @@
 
     <style>
         #mapContainer {
-            height: 600px;
+            height: 180px;
         }
     </style>
 
@@ -28,6 +32,7 @@
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mymap);
+        <%--var testArray = <%=JavaScript.Serialize(this.lats) %>;--%>
         var marker = L.marker([51.5, -0.09]).addTo(mymap);
         //var circle = L.circle([51.508, -0.11], {
         //    color: 'red',

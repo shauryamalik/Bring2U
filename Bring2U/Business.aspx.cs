@@ -10,9 +10,20 @@ namespace Bring2U
 {
     public partial class Business : System.Web.UI.Page
     {
+        public string uid;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UID"] != null && string.Equals("Business", Session["Type"].ToString().Trim()))
+            {
+                uid = Session["UID"].ToString();
+                SqlDataSource1.SelectCommand += $"where UserID='{Session["UID"].ToString()}'";
+            }
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)

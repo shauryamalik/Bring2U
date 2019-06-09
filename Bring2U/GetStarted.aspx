@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GetStarted.aspx.cs" Inherits="Bring2U.GetStarted" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="GetStarted.aspx.cs" Inherits="Bring2U.GetStarted" %>
 
-<!DOCTYPE html>
-<html>
-<head>
+
+<asp:Content ID="BodyContent_GetStarted" ContentPlaceHolderID="MainContent" runat="server">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -66,7 +66,7 @@ span.psw {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left: 0;
+  right: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
@@ -125,16 +125,52 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
-}
-</style>
-</head>
-<body>
+ 
+ }
+    .auto-style1 {
+        padding: 16px;
+        position: relative;
+        float: right;
+        left: 146px;
+        top: 3px;
+    }
+    .auto-style2 {
+        width: 322px;
+        height: 224px;
+    }
+    .auto-style3 {
+        padding: 16px;
+        position: center;
+        float: right;
+        left: -54px;
+        top: -136px;
+    }
+    .auto-style4 {
+        width: 444px;
+        height: 330px;
+    }
+    .auto-style5 {
+        width: 431px;
+        margin-left: 500px;
+    }
+    .auto-style6 {
+        width: 431px;
+    }
+    </style>
+<div style="width: 1000px; height: 500px;">
 
-<h2>Get Started with Bring2U!</h2>
-
+    <p class="auto-style5" >&nbsp;</p>
+<%--    <p class="auto-style5" >
+    <asp:Button ID="Button3" runat="server" Text="Sign Up" OnClick="Button3_Click" />
+    </p>--%>
+<div id="login_signup" class="auto-style3">
 <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button>
-
+<%--<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button>--%>
+    &nbsp;&nbsp;&nbsp;
+</div>
+    <br />
+    <br />
+    <br />
 <div id="id01" class="modal">
   
   <form class="modal-content animate" action="/action_page.php">
@@ -142,23 +178,25 @@ span.psw {
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="../img/login.png" alt="Avatar" class="avatar">
     </div>
+    <br /><br /><br /><br /><br /><br />
 
     <div class="container">
       <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <input type="text" placeholder="Enter Username" name="uname" id="username" runat="server" required />
+        <br /><br /><br /><br />
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+      <input type="password" placeholder="Enter Password" name="psw" id="password" runat="server" required />
+        <br /><br /><br /><br />
+
+      <%--<button type="button" runat="server" onserverclick="BtnLogin_Click">Login</button>--%>
+        <asp:Button ID="Button1" runat="server" Text="Login" OnClick="BtnLogin_Click" />
     </div>
+      <br /><br /><br /><br />
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      
     </div>
   </form>
 </div>
@@ -168,21 +206,42 @@ span.psw {
   
   <form class="modal-content animate" action="/action_page.php">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="../img/signup.png" alt="Avatar" class="avatar">
     </div>
-
+      <br /><br /><br /><br /><br /><br />
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="uname2l"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname2" id="uname2" runat="server" required />
+        <br /><br /><br /><br />
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
+      <label for="psw2l"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw2" id="pwd2" runat="server" required />
+        <br /><br /><br /><br />
+
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" name="name2" id="name2" runat="server" required />
+        <br /><br /><br /><br />
+
+      <label for="zip"><b>Zipcode</b></label>
+      <input type="text" placeholder="Enter Zipcode" name="zip2" id="zip2" runat="server" required maxlength="5" />
+      <br /><br /><br /><br />
+
+        <label for="utype"><b>User Type</b></label>
+        <br /><br />
+        <form>
+          <input type="radio"  id="DonorRadio" name="TypeValue" value="Donor" checked runat="server" /> Donor<br>
+          <input type="radio"  id="ReceiverRadio" name="TypeValue" value="Receiver" runat="server" /> Receiver<br>
+          <input type="radio"  id="BusinessRadio" name="TypeValue" value="Business" runat="server" /> Business
+                
+      </form>
+        <br /><br /><br /><br />
+
+      <%--<button type="button" runat="server" onserverclick="BtnSignup_Click">Sign Up</button>--%>
+        <asp:Button ID="Button2" runat="server" Text="Sign Up" OnClick="BtnSignup_Click" />
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
+    <div class="auto-style1" style="background-color:#f1f1f1;">
       <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
       
     </div>
@@ -212,6 +271,4 @@ span.psw {
         }
     }
 </script>
-
-</body>
-</html>
+</asp:Content>

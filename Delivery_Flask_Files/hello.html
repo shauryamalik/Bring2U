@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<body onload="getLocation()">
+		<p>Click the button to get your coordinates.</p>
+
+		<button onclick="getLocation()">Try It</button>
+
+		<form action="http://localhost:5000/result" method="POST">
+			<p>Latitude <input type = "text" id="lat" name = "latitude" /></p>
+	        <p>Longitude <input type = "text" id="lon" name = "longitude" /></p>
+	        <p><input type = "submit" value = "submit" id = "sub"/></p>
+			<p id="demo"></p>
+		</form>
+		<script>
+			var x = document.getElementById("demo");
+			
+			var latitude;
+			var longitude;
+			var recall;
+
+			function indirect() {
+				recall = setInterval(getLocation, 10000);
+			}
+
+			function error_func(err){
+				console.warn(`ERROR(${err.code}): ${err.message}`);
+			}
+			function delay_call1(){	
+			    navigator.geolocation.getCurrentPosition(showPosition,error_func,{timeout:10000});
+			}
+			function delay_call(){
+				if (navigator.geolocation) {
+					setTimeout(delay_call1, 1000);
+			    	
+
+			  	} 
+			  	else { 
+			    	x.innerHTML = "Geolocation is not supported by this browser.";
+			  	}
+			}
+			
+			function getLocation() {
+				//alert("Namskara :)");
+				//document.write("here");
+				
+				//document.write("here");
+
+				document.getElementById("lat").value = "";
+				document.getElementById("lon").value = "";
+			  	
+			  	setTimeout(delay_call, 5000);
+			  	
+			}
+
+			function showPosition(position) {
+				x.innerHTML = "Latitude";
+				x.innerHTML = "Latitude: " + position.coords.latitude + 
+								"<br>Longitude: " + position.coords.longitude;
+
+				latitude = position.coords.latitude;
+				longitude = position.coords.longitude;
+
+				document.getElementById("myText").innerHTML = latitude;
+				document.getElementById("lat").value = latitude;
+				document.getElementById("lon").value = longitude;
+				document.getElementById("sub").click();
+
+			}
+		</script>
+		<p>"the value for number is: " <span id="myText"></span></p>
+
+		<!--<p>Latitude <input type = "text" id="lat" name = "latitude" /></p>
+        <p>Longitude <input type = "text" id="lon" name = "longitude" /></p>
+
+        <p>Name <input type = "text" name = "Name" /></p>
+        <p>Physics <input type = "text" name = "Physics" /></p>
+        <p>Chemistry <input type = "text" name = "chemistry" /></p>
+        <p>Maths <input type ="text" name = "Mathematics" /></p>
+        <p><input type = "submit" value = "submit" /></p>-->      
+   	</body>
+</html>

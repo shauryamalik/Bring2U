@@ -50,25 +50,30 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a id="homebuttonnav" runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="CommunityList.aspx">Need Food?</a></li>
-                        <li><a runat="server" href="GetStarted.aspx">Get Started</a></li>
                         <li><a runat="server" href="GetDirections.html">Maps</a></li>
-                        <li><a runat="server" href="NewReceiver.aspx">Receiver</a></li>
-                        <li><a runat="server" href="Money_Donate.aspx">Donate</a></li>
+                        <li><a runat="server" href="Money_Donate.aspx">Donate ($)</a></li>
+                        <li><a runat="server" href="calamity.aspx">Disaster</a></li>
+                        <li><a runat="server" href="SignUpPage.aspx">Sign Up</a></li>
                     </ul>
+                    <div class="navbar-brand" style="float:right;">
+                        <a runat="server" onServerClick="logoutClick"><%= logStatus%></a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+            <div style="position:absolute; bottom:0; width:100%;">
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Bring2U</p>
             </footer>
+            </div>
         </div>
 
     </form>

@@ -1,10 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Money_Donate.aspx.cs" Inherits="Bring2U.Money_Donate" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Money_Donate.aspx.cs" Inherits="Bring2U.Money_Donate" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Form filling</title>
+<asp:Content ID="BodyContent_MoneyDonate" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         #fileds {
             margin-bottom: 2px;
@@ -13,9 +9,6 @@
             display:block; float:left; width:150px;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
         <div id="message">
             <p style="margin-left: 160px">&nbsp;</p>
             <p style="margin-left: 160px">&nbsp;</p>
@@ -71,6 +64,5 @@
         <p style="margin-left: 680px">
                 <asp:Button ID="Button1" runat="server" Text="Submit"  OnClick="Display"/>
             </p>
-    </form>
-</body>
-</html>
+
+    </asp:Content>

@@ -1,14 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewReceiver.aspx.cs" Inherits="Bring2U.NewReceiver" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="NewReceiver.aspx.cs" Inherits="Bring2U.NewReceiver" %>
 
+<asp:Content ID="BodyContent_Receiver" ContentPlaceHolderID="MainContent" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta charset="utf-8" />
-    <title></title>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
 <style>
 .switch {
   position: relative;
@@ -173,59 +170,47 @@ input:checked + .slider .off
     background-color:#2196F3;
     margin-left:120px;
 }
+#block{
+    height:80px;
+    background-color:#fff;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4588ba;
+    margin-bottom:10px;
+
+}
 </style>
-<body style="margin:0px;">
   <div style="height:150px;background-color:#000000;width:100%;">
 </div>
     <div style="margin-top:-20px;background-color:#ffe4b5;height:30px;">
         <h2>WE ARE HERE TO HELP</h2>
     </div>
     <div class="row">
-    <div class="column"><label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"><!--ADDED HTML --><span class="on">VEG</span><span class="off">NON VEG</span><!--END--></div></label></div>
+    <div class="column"><label class="switch"><input type="checkbox" id="togBtn" runat="server"/><div class="slider round"><!--ADDED HTML --><span class="on">VEG</span><span class="off">NON VEG</span><!--END--></div></label></div>
  
- <div class="column1"><label class="switch1"><input type="checkbox" id="togBtn"><div class="slider round"><!--ADDED HTML --><span class="on">DONATE</span><span class="off">PAY</span><!--END--></div></label></div>  
+ <div class="column1"><label class="switch1"><input type="checkbox" id="togBtn2" runat="server"/><div class="slider round"><!--ADDED HTML --><span class="on">FREE</span><span class="off">PAID</span><!--END--></div></label></div>  
     </div>
+    <br />
+    <asp:Button ID="Button1" runat="server" Text="Refresh" OnClick="Button1_Click" />
+    
+<%--    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>--%>
     <!--food-list-->
     <h2 style="margin-bottom:3px;">Food List</h2>
     <div class="row">
          <!--smaller div-->
-        <div class="ScrollStyle">
-            <div style="height:80px;background-color:#fff;padding-bottom: 10px;border-bottom: 3px solid #4588ba; margin-bottom:10px;">
-            <form><input type="text" id="FoodName"placeholder="ENTER FOOD NAME"><br /><br /><input type="text" name="firstname"placeholder="Entry Date">&nbsp;&nbsp;<input type="text" name="firstname"placeholder="Expiry Date"><button onclick="myFunction()"class=" btn-primary"><i class="fa fa-paper-plane"></i>ADD TO CART</button></form>
-               
+        <div class="ScrollStyle" id="temp1">
+            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+           <%-- <button style="height:30px;background-color:#4588ba;border-radius: 30px;margin-left:900px;" runat="server" onserverclick="BookButton_Click"><i class="fa fa-address-book"></i>BOOK</button>--%>
+            <br />
+            <%--<button runat="server" onserverclick="Button2_Click"></button>--%>
+            <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Button2_Click" UseSubmitBehavior="False" />
             </div>
-           
-            <div style="height:80px;background-color:#fff;padding-bottom: 10px;border-bottom: 3px solid #4588ba; margin-bottom:10px;">
-            <form><input type="text" id="FoodName"placeholder="ENTER FOOD NAME"><br /><br /><input type="text" name="firstname"placeholder="Entry Date">&nbsp;&nbsp;<input type="text" name="firstname"placeholder="Expiry Date"><button onclick="myFunction()"class=" btn-primary"><i class="fa fa-paper-plane"></i>ADD TO CART</button></form></div>
-            <div style="height:80px;background-color:#fff;padding-bottom: 10px;border-bottom: 3px solid #4588ba; margin-bottom:10px;">
-            <form><input type="text"  id="FoodName"placeholder="ENTER FOOD NAME"><br /><br /><input type="text" name="firstname"placeholder="Entry Date">&nbsp;&nbsp;<input type="text" name="firstname"placeholder="Expiry Date"><button onclick="myFunction()"class=" btn-primary"><i class="fa fa-paper-plane"></i>ADD TO CART</button></form></div>
-            <div style="height:80px;background-color:#fff;padding-bottom: 10px;border-bottom: 3px solid #4588ba; margin-bottom:10px;">
-            <form><input type="text"  id="FoodName"placeholder="ENTER FOOD NAME"><br /><br /><input type="text" name="firstname"placeholder="Entry Date">&nbsp;&nbsp;<input type="text" name="firstname"placeholder="Expiry Date"><button onclick="myFunction()"class=" btn-primary"><i class="fa fa-paper-plane"></i>ADD TO CART</button></form></div>
-            <div style="height:80px;background-color:#fff;padding-bottom: 10px;border-bottom: 3px solid #4588ba; margin-bottom:10px;">
-            <form><input type="text"  id="FoodName"placeholder="ENTER FOOD NAME"><br /><br /><input type="text" name="firstname"placeholder="Entry Date">&nbsp;&nbsp;<input type="text" name="firstname"placeholder="Expiry Date"><button onclick="myFunction()"class=" btn-primary"><i class="fa fa-paper-plane"></i>ADD TO CART</button></form></div>
-        </div>
-        <!-- storing data to other div-->
-        <div class="ScrollStyle1"><p id="demo"></p><script>function myFunction() {
-    var x = document.getElementById("FoodName").value;
-    var sum = "";
-    for (var i = 0; i < x.length; i++) {
-        var n = x[i].value;
-        sum = sum + n;
-        var node = document.createElement("LI");                 // Create a <li> node
-        var textnode = document.createTextNode(sum);
-
-        node.appendChild(textnode);                              // Append the text to <li>
-        document.getElementById("demo").appendChild(node);
-    }
-   
-                                                         
-                                                       }     // Append <li> to <ul> with id="myList"
-
-                   </script> </div>
-        <!--pick up and delivery button -->
-       <a href="aa.html"> <button style="height:30px;background-color:#4588ba;border-radius: 30px;margin-left:900px;"><i class="fa fa-home"></i>PICK UP</button></a>&nbsp;&nbsp;<button style="height:30px;background-color:#4588ba;border-radius: 30px;"><i class="fa fa-motorcycle"></i>DELIVERY</button>
-     <button style="height:30px;background-color:#4588ba;border-radius: 30px;margin-left:900px;"><i class="fa fa-address-book"></i>PAST ORDERS</button></a>
+             <div class="ScrollStyle1">
+                 <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>                                   
+         </div>
+ <button style="height:30px;background-color:#4588ba;border-radius: 30px;margin-left:900px;" ><i class="fa fa-home"></i>PICK UP</button></a>&nbsp;&nbsp;
+        <button style="height:30px;background-color:#4588ba;border-radius: 30px;"><i class="fa fa-motorcycle"></i>DELIVERY</button>
+     <button style="height:30px;background-color:#4588ba;border-radius: 30px;margin-left:900px;" ><i class="fa fa-address-book"></i>PAST ORDERS</button>
+        
     </div>
    
-</body>
-</html>
+    </asp:Content>
