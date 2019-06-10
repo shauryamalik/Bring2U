@@ -3,7 +3,7 @@ import sys
 app = Flask(__name__)
 
 
-f = open('./config','r')
+f = open('./config.txt','r')
 cont = f.read()
 if cont=="1":
     var = True
@@ -40,12 +40,15 @@ if var:
         return redirect('/')
         # print(var, file=sys.stdout)
         # return var
+else:
+    @app.route('/')
+    def no_req():
+       return render_template('login.html')
+
 
 
 
 if __name__ == '__main__': 
-    var = 1
-    if var == 0:
-        app.run(debug = True)
+    app.run(debug = True)
     
 

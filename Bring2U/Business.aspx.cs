@@ -47,7 +47,7 @@ namespace Bring2U
                     newID = 0;
                     Int32.TryParse(dr["id"].ToString(), out newID);
                     newID += 1;
-                    string insertSQL = $"INSERT INTO DONATION VALUES ({newID}, 10, '{TextBox1.Text}', '{veg}'" +
+                    string insertSQL = $"INSERT INTO DONATION VALUES ({newID}, {Session["UID"].ToString()}, '{TextBox1.Text}', '{veg}'" +
                 $", '{TextBox2.Text.ToString()}', '{cooked}', '{Calendar1.SelectedDate.ToString()}'" +
                 $", '{TextBox3.Text}', '{TextBox4.Text}', 'False','{TextBoxMRP.Text}', '{TextBoxPrice.Text}')";
                     rowsAffected = DatabaseHelper.sqlInsertUpdateDelete(insertSQL);
